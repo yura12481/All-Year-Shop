@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
-import manTitle from '../img/man-title.png';
+import manTitle from '../img/title/man-title.png';
 
 const TitlePage: React.FC = () => {
   return (
@@ -91,7 +91,7 @@ const TitlePage: React.FC = () => {
             maxHeight: { sm: 562, xs: 250 },
             maxWidth: { sm: 478, xs: 220 },
           }}
-        ></Box>
+        />
       </Container>
     </Box>
   );

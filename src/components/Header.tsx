@@ -128,9 +128,6 @@ const Header: React.FC = () => {
                 color="primary"
                 sx={{ marginLeft: 'auto' }}
               >
-                <SearchIcon />
-              </IconButton>
-              <IconButton size="large" color="primary">
                 <PersonIcon />
               </IconButton>
               <IconButton>
