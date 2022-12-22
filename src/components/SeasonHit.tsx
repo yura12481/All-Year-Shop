@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Rating } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import tShirt1 from '../img/season hit/t-shirt1.png';
 import tShirt2 from '../img/season hit/t-shirt2.png';
 import tShirt3 from '../img/season hit/t-shirt3.png';
@@ -34,13 +35,12 @@ const shopItems = [
     description: 'Ladies yellow top',
     price: '$15',
     reviews: 5,
-    size: '',
   },
 ];
 
 const SeasonHit: React.FC = () => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ marginBottom: '86px' }}>
       <Box>
         <Typography
           variant="h2"
@@ -73,7 +73,7 @@ const SeasonHit: React.FC = () => {
       </Box>
       {shopItems.map((item) => (
         <Box
-          key={item.reviews}
+          key={uuidv4()}
           sx={{
             display: 'inline-block',
             maxWidth: { xs: '100%' },

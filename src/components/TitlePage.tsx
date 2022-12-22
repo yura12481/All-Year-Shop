@@ -86,8 +86,6 @@ const TitlePage: React.FC = () => {
           src={manTitle}
           alt="man-title"
           sx={{
-            height: '562px',
-            width: '478px',
             maxHeight: { sm: 562, xs: 250 },
             maxWidth: { sm: 478, xs: 220 },
           }}

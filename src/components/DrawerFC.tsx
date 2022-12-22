@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { v4 as uuidv4 } from 'uuid';
 
 const pages = [
   'Home',
@@ -31,7 +32,7 @@ const DrawerFC: React.FC = () => {
       >
         <List sx={{ width: '250px' }}>
           {pages.map((page) => (
-            <ListItemButton onClick={() => setOpenDrawer(false)} key={page}>
+            <ListItemButton onClick={() => setOpenDrawer(false)} key={uuidv4()}>
               <ListItemIcon>
                 <ListItemText>{page}</ListItemText>
               </ListItemIcon>

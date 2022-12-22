@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import logo1 from '../img/delivery/logo-1.svg';
 import logo2 from '../img/delivery/logo-2.svg';
 import logo3 from '../img/delivery/logo-3.svg';
@@ -40,7 +41,7 @@ const Delivery: React.FC = () => {
         }}
       >
         {deliveryItems.map((item) => (
-          <Box key={item.title}>
+          <Box key={uuidv4()}>
             <Box
               component="img"
               src={item.img}

@@ -13,9 +13,9 @@ import {
   useTheme,
 } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
-import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { v4 as uuidv4 } from 'uuid';
 import DrawerFC from './DrawerFC';
 
 const pages = ['Home', 'About', 'Shop', 'Page', 'Block', 'Contact'];
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
               >
                 {pages.map((page) => (
                   <Tab
-                    key={page}
+                    key={uuidv4()}
                     label={page}
                     sx={{
                       color: '#6A7087',
