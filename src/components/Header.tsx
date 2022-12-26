@@ -16,7 +16,7 @@ import StoreIcon from '@mui/icons-material/Store';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { v4 as uuidv4 } from 'uuid';
-import DrawerFC from './DrawerFC';
+import DrawerFC from './Drawer/DrawerFC';
 
 const pages = ['Home', 'About', 'Shop', 'Page', 'Block', 'Contact'];
 

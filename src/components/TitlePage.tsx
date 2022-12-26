@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
-import manTitle from '../img/title/man-title.png';
+import manTitle from '../assets/images/title/man-title.png';
 
 const TitlePage: React.FC = () => {
   return (

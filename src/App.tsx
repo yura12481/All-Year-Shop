@@ -3,6 +3,7 @@ import Delivery from './components/Delivery';
 import FeaturedProduct from './components/FeaturedProduct';
 import Header from './components/Header';
 import SeasonHit from './components/SeasonHit';
+import ShopProducts from './components/ShopProducts/ShopProducts';
 import TitlePage from './components/TitlePage';
 
 const App: React.FC = () => {
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       <Delivery />
       <SeasonHit />
       <FeaturedProduct />
+      <ShopProducts />
     </>
   );
 };

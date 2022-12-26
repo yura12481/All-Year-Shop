@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography, Button } from '@mui/material';
-import featuredProductLogo from '../img/featured product/featured-product.png';
-import Clock from './Clock';
+import featuredProductLogo from '../assets/images/featured product/featured-product.png';
+import Clock from './Clock/Clock';
 
 const FeaturedProduct: React.FC = () => {
   return (

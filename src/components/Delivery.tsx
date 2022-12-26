@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import logo1 from '../img/delivery/logo-1.svg';
-import logo2 from '../img/delivery/logo-2.svg';
-import logo3 from '../img/delivery/logo-3.svg';
-import logo4 from '../img/delivery/logo-4.svg';
+import logo1 from '../assets/images/delivery/logo-1.svg';
+import logo2 from '../assets/images/delivery/logo-2.svg';
+import logo3 from '../assets/images/delivery/logo-3.svg';
+import logo4 from '../assets/images/delivery/logo-4.svg';
 
 const deliveryItems = [
   {
