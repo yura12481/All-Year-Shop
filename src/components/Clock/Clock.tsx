@@ -20,7 +20,7 @@ const Clock: React.FC = () => {
     let interval: any;
 
     const startTimer = (): void => {
-      const countDownDate = new Date('January 10, 2023').getTime();
+      const countDownDate = new Date('January 20, 2023').getTime();
 
       interval = setInterval(() => {
         const now = new Date().getTime();

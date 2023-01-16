@@ -128,12 +128,16 @@ const Header: React.FC = () => {
                 color="primary"
                 sx={{ marginLeft: 'auto' }}
               >
-                <PersonIcon />
+                <Link href="/user">
+                  <PersonIcon />
+                </Link>
               </IconButton>
               <IconButton>
-                <Badge badgeContent="6" color="error">
-                  <ShoppingCartIcon color="primary" />
-                </Badge>
+                <Link href="/basket">
+                  <Badge badgeContent="6" color="error">
+                    <ShoppingCartIcon color="primary" />
+                  </Badge>
+                </Link>
               </IconButton>
             </>
           )}
