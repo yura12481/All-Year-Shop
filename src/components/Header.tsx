@@ -18,7 +18,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { v4 as uuidv4 } from 'uuid';
 import DrawerFC from './Drawer/DrawerFC';
 
-const pages = ['Home', 'About', 'Shop', 'Page', 'Block', 'Contact'];
+const pages: string[] = ['Home', 'About', 'Shop', 'Page', 'Block', 'Contact'];
 
 const Header: React.FC = () => {
   const [value, setValue] = useState<number>(0);

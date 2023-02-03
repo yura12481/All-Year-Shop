@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box } from '@mui/material';
+import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { IClothes } from '../../models';
 import ClothesItem from '../ClothesItem';
 import Skeleton from './Skeleton';
+import Search from '../Search/Search';
+import PaginationComponent from '../Pagination/PaginationComponent';
+import { IClothes } from '../../models';
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { setCategoryId } from '../../redux/slices/filterSlice';
 
-const clothesFor = ['All clothes', 'Men', 'Women', 'Kids'];
+const clothesFor: string[] = ['All clothes', 'Men', 'Women', 'Kids'];
 
 const ShopProducts: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const categoryId = useAppSelector((state) => state.filter.categoryId);
+
   const [data, setData] = useState<IClothes[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [searchValue, setSearchValue] = useState<null | string>('');
+  const [page, setPage] = useState<number>(1);
+  const [pageQty, setPageQty] = useState<number>(0);
+
   useEffect((): void => {
     setIsLoading(true);
-    fetch(
-      `https://63a41f0f821953d4f2aa043e.mockapi.io/items?${
-        activeIndex > 0 ? `category=${activeIndex}` : 'page=1&limit=8'
-      }`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
+    axios
+      .get<IClothes[]>(
+        `https://63a41f0f821953d4f2aa043e.mockapi.io/items?page=${page}&limit=8&${
+          categoryId > 0 ? `category=${categoryId}` : ''
+        }${searchValue ? `&search=${searchValue}` : ''}`
+      )
+      .then((response) => {
+        setData(response.data);
+        setPageQty(3);
         setIsLoading(false);
       });
-  }, [activeIndex]);
+  }, [categoryId, searchValue, page]);
   return (
     <Container maxWidth="lg" sx={{ marginTop: '126px' }}>
       <Typography
@@ -62,7 +74,7 @@ const ShopProducts: React.FC = () => {
         </Typography>
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {clothesFor.map((item, indx) =>
-            activeIndex === indx ? (
+            categoryId === indx ? (
               <Typography
                 key={uuidv4()}
                 sx={{
@@ -80,7 +92,7 @@ const ShopProducts: React.FC = () => {
             ) : (
               <Typography
                 key={uuidv4()}
-                onClick={() => setActiveIndex(indx)}
+                onClick={() => dispatch(setCategoryId(indx))}
                 sx={{
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: '26px',
@@ -97,10 +109,12 @@ const ShopProducts: React.FC = () => {
             )
           )}
         </Box>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </Box>
       {isLoading
         ? [...new Array(8)].map(() => <Skeleton key={uuidv4()} />)
         : data.map((item) => <ClothesItem key={uuidv4()} {...item} />)}
+      <PaginationComponent page={page} pageQty={pageQty} setPage={setPage} />
     </Container>
   );
 };

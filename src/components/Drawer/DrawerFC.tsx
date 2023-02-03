@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { v4 as uuidv4 } from 'uuid';
 
-const pages = [
+const pages: string[] = [
   'Home',
   'Profile',
   'Basket',

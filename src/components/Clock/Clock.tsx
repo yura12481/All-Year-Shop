@@ -14,13 +14,13 @@ const Clock: React.FC = () => {
     { date: `${timerMinutes}`, addition: ':' },
     { date: `${timerSeconds}` },
   ];
-  const timerInformation = ['DAYS', 'HRS', 'MINS', 'SECS'];
+  const timerInformation: string[] = ['DAYS', 'HRS', 'MINS', 'SECS'];
 
   useEffect((): void => {
     let interval: any;
 
     const startTimer = (): void => {
-      const countDownDate = new Date('January 20, 2023').getTime();
+      const countDownDate = new Date('February 24, 2023').getTime();
 
       interval = setInterval(() => {
         const now = new Date().getTime();
