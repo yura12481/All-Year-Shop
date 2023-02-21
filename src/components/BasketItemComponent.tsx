@@ -1,34 +1,25 @@
 import React from 'react';
-import { Box, Typography, Rating, Button } from '@mui/material';
-import { IClothes } from '../models';
-import { useAppDispatch, useAppSelector } from '../hook';
-import { addItem, BasketItem } from '../redux/slices/basketSlice';
+import { Typography, Box, Button } from '@mui/material';
+import {
+  BasketItem,
+  plusItem,
+  minusItem,
+  removeItem,
+} from '../redux/slices/basketSlice';
+import { useAppDispatch } from '../hook';
 
-const ClothesItem: React.FC<IClothes> = ({
-  id,
+const BasketItemComponent: React.FC<BasketItem> = ({
+  randomId,
   img,
-  rating,
-  reviews,
   name,
   price,
-  discount,
-}: IClothes) => {
+  count,
+}: BasketItem) => {
   const dispatch = useAppDispatch();
-  const countItem = useAppSelector((state) =>
-    state.basket.items.find((obj) => obj.id === id)
-  );
-  const addedCount = countItem ? countItem.count : 0;
-
-  const onClickAdd = () => {
-    const item: BasketItem = {
-      id,
-      img,
-      name,
-      price,
-      count: 0,
-      randomId: '0',
-    };
-    dispatch(addItem(item));
+  const onClickRemove = () => {
+    if (window.confirm('Are you sure you want to remove?')) {
+      dispatch(removeItem(randomId));
+    }
   };
   return (
     <Box
@@ -39,14 +30,14 @@ const ClothesItem: React.FC<IClothes> = ({
     >
       <Box
         sx={{
-          height: '330px',
-          width: '255px',
+          height: '310px',
+          width: '310px',
           background: '#F7F8FC',
-          borderRadius: '4px',
+          borderRadius: '30%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          marginRight: '33px',
+          marginRight: '70px',
           marginTop: '15px',
         }}
       >
@@ -57,28 +48,6 @@ const ClothesItem: React.FC<IClothes> = ({
           sx={{ maxHeight: '219px', maxWidth: '200px' }}
         />
       </Box>
-      <Rating
-        name="read-only"
-        size="small"
-        value={rating}
-        readOnly
-        sx={{
-          marginRight: '10px',
-          marginTop: '15px',
-        }}
-      />
-      <Typography
-        component="span"
-        sx={{
-          fontFamily: "'Work Sans', sans-serif",
-          fontSize: '16px',
-          fontWeight: '300',
-          lineHeight: '25px',
-          color: '#7F8698',
-        }}
-      >
-        {reviews} Reviews
-      </Typography>
       <Typography
         variant="h3"
         sx={{
@@ -105,30 +74,19 @@ const ClothesItem: React.FC<IClothes> = ({
           marginRight: '18px',
         }}
       >
-        ${price}
+        ${price * count}
       </Typography>
-      {discount && (
-        <Typography
-          component="span"
-          sx={{
-            textDecoration: 'line-through',
-            fontFamily: "'Work Sans', sans-serif",
-            fontSize: '20px',
-            fontWeight: '400',
-            lineHeight: '60px',
-            color: '#969DAD',
-          }}
-        >
-          {discount}
-        </Typography>
-      )}
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
         <Button
-          onClick={onClickAdd}
+          onClick={() => dispatch(plusItem(randomId))}
           variant="contained"
           sx={{
             borderRadius: '38px',
-            padding: '11px 20px',
             maxWidth: '120px',
             maxHeight: '30px',
             background: '#589195',
@@ -138,27 +96,60 @@ const ClothesItem: React.FC<IClothes> = ({
             },
           }}
         >
-          + ADD
+          +
         </Button>
         <Box
-          component="span"
           sx={{
             background: '#589195',
             fontFamily: "'Outfit', sans-serif",
             color: 'white',
             paddingTop: '7px',
-            marginLeft: '8px',
+            margin: '0 15px',
             borderRadius: '20px',
             height: '35px',
             width: '35px',
             textAlign: 'center',
           }}
         >
-          {addedCount && addedCount}
+          {count}
         </Box>
+        <Button
+          onClick={() => dispatch(minusItem(randomId))}
+          variant="contained"
+          sx={{
+            borderRadius: '38px',
+            maxWidth: '120px',
+            maxHeight: '30px',
+            background: '#589195',
+            fontFamily: "'Outfit', sans-serif",
+            '&:hover': {
+              background: '#589195',
+            },
+          }}
+        >
+          -
+        </Button>
       </Box>
+      <Button
+        onClick={onClickRemove}
+        variant="contained"
+        sx={{
+          marginTop: '10px',
+          marginLeft: '55px',
+          borderRadius: '38px',
+          maxWidth: '120px',
+          maxHeight: '30px',
+          background: '#589195',
+          fontFamily: "'Outfit', sans-serif",
+          '&:hover': {
+            background: '#589195',
+          },
+        }}
+      >
+        Remove
+      </Button>
     </Box>
   );
 };
 
-export default ClothesItem;
+export default BasketItemComponent;

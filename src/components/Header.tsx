@@ -8,15 +8,16 @@ import {
   Toolbar,
   Typography,
   Badge,
-  Link,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import DrawerFC from './Drawer/DrawerFC';
+import { useAppSelector } from '../hook';
 
 const pages: string[] = ['Home', 'About', 'Shop', 'Page', 'Block', 'Contact'];
 
@@ -24,6 +25,9 @@ const Header: React.FC = () => {
   const [value, setValue] = useState<number>(0);
   const theme = useTheme();
   const media = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const items = useAppSelector((state) => state.basket.items);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   return (
     <AppBar
       position="static"
@@ -43,50 +47,34 @@ const Header: React.FC = () => {
           {media ? (
             <>
               <IconButton size="large" color="primary">
-                <Link href="/">
-                  <StoreIcon />
+                <Link to="/">
+                  <StoreIcon color="primary" />
                 </Link>
               </IconButton>
-              <Link
-                href="/"
-                underline="hover"
+
+              <Typography
+                variant="h2"
                 sx={{
-                  '&.MuiTypography-root': {
-                    color: '#589195',
-                  },
+                  fontFamily: "'Cormorant', serif",
+                  fontWeight: 700,
+                  fontSize: '30px',
+                  lineHeight: '36px',
+                  color: '#589195',
                 }}
               >
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontFamily: "'Cormorant', serif",
-                    fontWeight: 700,
-                    fontSize: '30px',
-                    lineHeight: '36px',
-                    color: '#589195',
-                  }}
-                >
-                  All Year Shop
-                </Typography>
-              </Link>
+                All Year Shop
+              </Typography>
+
               <DrawerFC />
             </>
           ) : (
             <>
-              <IconButton size="large" color="primary">
-                <Link href="/">
-                  <StoreIcon />
+              <IconButton size="large">
+                <Link to="/">
+                  <StoreIcon color="primary" />
                 </Link>
               </IconButton>
-              <Link
-                href="/"
-                underline="hover"
-                sx={{
-                  '&.MuiTypography-root': {
-                    color: '#589195',
-                  },
-                }}
-              >
+              <Link to="/" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h2"
                   sx={{
@@ -123,18 +111,14 @@ const Header: React.FC = () => {
                   />
                 ))}
               </Tabs>
-              <IconButton
-                size="large"
-                color="primary"
-                sx={{ marginLeft: 'auto' }}
-              >
-                <Link href="/user">
-                  <PersonIcon />
+              <IconButton size="large" sx={{ marginLeft: 'auto' }}>
+                <Link to="/user">
+                  <PersonIcon color="primary" />
                 </Link>
               </IconButton>
               <IconButton>
-                <Link href="/basket">
-                  <Badge badgeContent="6" color="error">
+                <Link to="/basket">
+                  <Badge badgeContent={totalCount} color="error">
                     <ShoppingCartIcon color="primary" />
                   </Badge>
                 </Link>

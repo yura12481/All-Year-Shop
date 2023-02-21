@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Cart from './pages/Cart';
+import Basket from './pages/Basket';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/basket" element={<Cart />} />
+        <Route path="/basket" element={<Basket />} />
       </Routes>
     </>
   );

@@ -4,6 +4,7 @@ import ShopProducts from '../components/ShopProducts/ShopProducts';
 import TitlePage from '../components/TitlePage';
 import Delivery from '../components/Delivery';
 import FeaturedProduct from '../components/FeaturedProduct';
+
 const Home: React.FC = () => {
   return (
     <>

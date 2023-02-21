@@ -1,40 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Typography, Box } from '@mui/material';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import ClothesItem from '../ClothesItem';
 import Skeleton from './Skeleton';
 import Search from '../Search/Search';
 import PaginationComponent from '../Pagination/PaginationComponent';
-import { IClothes } from '../../models';
+import DataError from '../DataError';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { setCategoryId } from '../../redux/slices/filterSlice';
+import { fetchClothes } from '../../redux/slices/clothesSlice';
 
 const clothesFor: string[] = ['All clothes', 'Men', 'Women', 'Kids'];
 
 const ShopProducts: React.FC = () => {
   const dispatch = useAppDispatch();
-  const categoryId = useAppSelector((state) => state.filter.categoryId);
-
-  const [data, setData] = useState<IClothes[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [searchValue, setSearchValue] = useState<null | string>('');
-  const [page, setPage] = useState<number>(1);
-  const [pageQty, setPageQty] = useState<number>(0);
+  const { categoryId, page, searchValue } = useAppSelector(
+    (state) => state.filter
+  );
+  const { data, status } = useAppSelector((state) => state.clothes);
 
   useEffect((): void => {
-    setIsLoading(true);
-    axios
-      .get<IClothes[]>(
-        `https://63a41f0f821953d4f2aa043e.mockapi.io/items?page=${page}&limit=8&${
-          categoryId > 0 ? `category=${categoryId}` : ''
-        }${searchValue ? `&search=${searchValue}` : ''}`
-      )
-      .then((response) => {
-        setData(response.data);
-        setPageQty(3);
-        setIsLoading(false);
-      });
+    dispatch(
+      fetchClothes({
+        categoryId,
+        page,
+        searchValue,
+      })
+    );
   }, [categoryId, searchValue, page]);
   return (
     <Container maxWidth="lg" sx={{ marginTop: '126px' }}>
@@ -109,12 +101,19 @@ const ShopProducts: React.FC = () => {
             )
           )}
         </Box>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Search />
       </Box>
-      {isLoading
-        ? [...new Array(8)].map(() => <Skeleton key={uuidv4()} />)
-        : data.map((item) => <ClothesItem key={uuidv4()} {...item} />)}
-      <PaginationComponent page={page} pageQty={pageQty} setPage={setPage} />
+      {status === 'error' ? (
+        <DataError />
+      ) : (
+        <Box>
+          {status === 'loading'
+            ? [...new Array(8)].map(() => <Skeleton key={uuidv4()} />)
+            : data.map((item) => <ClothesItem key={uuidv4()} {...item} />)}
+        </Box>
+      )}
+
+      <PaginationComponent />
     </Container>
   );
 };

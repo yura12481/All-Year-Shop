@@ -30,7 +30,7 @@ const DrawerFC: React.FC = () => {
         onClose={() => setOpenDrawer(false)}
         anchor="right"
       >
-        <List sx={{ width: '250px' }}>
+        <List sx={{ width: '320px' }}>
           {pages.map((page) => (
             <ListItemButton onClick={() => setOpenDrawer(false)} key={uuidv4()}>
               <ListItemIcon>

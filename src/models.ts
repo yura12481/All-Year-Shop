@@ -4,7 +4,8 @@ export interface IClothes {
   rating: number;
   reviews: number;
   name: string;
-  price: string;
+  price: number;
   discount?: string;
   category?: number;
+  count?: number;
 }

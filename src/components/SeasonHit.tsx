@@ -1,40 +1,44 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
-import tShirt1 from '../assets/images/season hit/t-shirt1.png';
-import tShirt2 from '../assets/images/season hit/t-shirt2.png';
-import tShirt3 from '../assets/images/season hit/t-shirt3.png';
-import tShirt4 from '../assets/images/season hit/t-shirt4.png';
+import tShirt1Img from '../assets/images/season hit/t-shirt1.png';
+import tShirt2Img from '../assets/images/season hit/t-shirt2.png';
+import tShirt3Img from '../assets/images/season hit/t-shirt3.png';
+import tShirt4Img from '../assets/images/season hit/t-shirt4.png';
 import ClothesItem from './ClothesItem';
 
 const shopItems = [
   {
-    img: `${tShirt1}`,
+    id: 555,
+    img: `${tShirt1Img}`,
     rating: 5,
     name: 'Ladies yellow top',
-    price: '$25',
+    price: 25,
     reviews: 4,
   },
   {
-    img: `${tShirt2}`,
+    id: 556,
+    img: `${tShirt2Img}`,
     rating: 3,
     name: 'Ladies Black top',
-    price: '$35',
+    price: 35,
     reviews: 3,
   },
   {
-    img: `${tShirt3}`,
+    id: 557,
+    img: `${tShirt3Img}`,
     rating: 4,
     name: 'Ladies long top',
-    price: '$40',
+    price: 40,
     discount: '$45',
     reviews: 2,
   },
   {
-    img: `${tShirt4}`,
+    id: 558,
+    img: `${tShirt4Img}`,
     rating: 5,
     name: 'Ladies yellow top',
-    price: '$15',
+    price: 15,
     reviews: 5,
   },
 ];
