@@ -6,7 +6,13 @@ import logo2 from '../assets/images/delivery/logo-2.svg';
 import logo3 from '../assets/images/delivery/logo-3.svg';
 import logo4 from '../assets/images/delivery/logo-4.svg';
 
-const deliveryItems = [
+type DeliveryItem = {
+  img: string;
+  title: string;
+  subtitle: string;
+};
+
+const deliveryItems: DeliveryItem[] = [
   {
     img: `${logo1}`,
     title: 'Free Shipping',

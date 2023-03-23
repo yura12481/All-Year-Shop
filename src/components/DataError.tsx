@@ -32,7 +32,7 @@ const DataError: React.FC = () => {
             margin: '25px auto',
           }}
         >
-          Unfortunately, it was not possible to get pizzas. Please try again
+          Unfortunately, it was not possible to get clothes. Please try again
           later.
         </Typography>
       </Box>

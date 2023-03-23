@@ -14,7 +14,7 @@ const BasketItemComponent: React.FC<BasketItem> = ({
   name,
   price,
   count,
-}: BasketItem) => {
+}) => {
   const dispatch = useAppDispatch();
   const onClickRemove = () => {
     if (window.confirm('Are you sure you want to remove?')) {

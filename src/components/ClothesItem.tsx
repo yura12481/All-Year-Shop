@@ -12,7 +12,7 @@ const ClothesItem: React.FC<IClothes> = ({
   name,
   price,
   discount,
-}: IClothes) => {
+}) => {
   const dispatch = useAppDispatch();
   const countItem = useAppSelector((state) =>
     state.basket.items.find((obj) => obj.id === id)

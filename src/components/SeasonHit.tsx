@@ -7,7 +7,17 @@ import tShirt3Img from '../assets/images/season hit/t-shirt3.png';
 import tShirt4Img from '../assets/images/season hit/t-shirt4.png';
 import ClothesItem from './ClothesItem';
 
-const shopItems = [
+type ShopItem = {
+  id: number;
+  img: string;
+  rating: number;
+  name: string;
+  price: number;
+  discount?: string;
+  reviews: number;
+};
+
+const shopItems: ShopItem[] = [
   {
     id: 555,
     img: `${tShirt1Img}`,
