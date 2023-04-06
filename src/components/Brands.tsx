@@ -1,11 +1,17 @@
 import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import adidasLogo from '../assets/images/brands/adidas.svg';
 import nikeLogo from '../assets/images/brands/nike.svg';
 import pumaLogo from '../assets/images/brands/puma.svg';
 import ogLogo from '../assets/images/brands/og.svg';
 
-const brands = [
+type BrandsItem = {
+  id: number;
+  img: string;
+  alt: string;
+};
+
+const brands: BrandsItem[] = [
   { id: 1, img: `${adidasLogo}`, alt: 'adidas-logo' },
   { id: 2, img: `${nikeLogo}`, alt: 'nike-logo' },
   { id: 3, img: `${pumaLogo}`, alt: 'puma-logo' },

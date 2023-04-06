@@ -60,6 +60,12 @@ const basketSlice = createSlice({
       }, 0);
     },
     removeItem(state, action: PayloadAction<string>) {
+      const removedItem = state.items.find(
+        (item) => item.randomId === action.payload
+      );
+      if (removedItem) {
+        state.totalPrice -= removedItem.price * removedItem.count;
+      }
       state.items = state.items.filter(
         (item) => item.randomId !== action.payload
       );

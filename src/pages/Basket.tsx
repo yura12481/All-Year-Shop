@@ -35,15 +35,15 @@ const Basket: React.FC = () => {
         <Box>
           <ShoppingCartIcon
             color="primary"
-            sx={{ fontSize: '40px', marginRight: '10px' }}
+            sx={{ fontSize: '25px', marginRight: '10px' }}
           />
           <Typography
             component="span"
             sx={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: '40px',
+              fontSize: '26px',
               fontWeight: '400',
-              lineHeight: '60px',
+              lineHeight: '30px',
               color: '#3A415C',
             }}
           >
@@ -53,15 +53,15 @@ const Basket: React.FC = () => {
         <Box onClick={onClickClear} sx={{ cursor: 'pointer' }}>
           <DeleteIcon
             color="primary"
-            sx={{ fontSize: '40px', marginRight: '10px' }}
+            sx={{ fontSize: '25px', marginRight: '10px' }}
           />
           <Typography
             component="span"
             sx={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: '40px',
+              fontSize: '26px',
               fontWeight: '400',
-              lineHeight: '60px',
+              lineHeight: '30px',
               color: '#3A415C',
             }}
           >
@@ -84,8 +84,10 @@ const Basket: React.FC = () => {
         <Typography
           sx={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: '25px',
-            color: '#000000',
+            fontSize: '20px',
+            fontWeight: '400',
+            lineHeight: '30px',
+            color: '#3A415C',
           }}
         >
           All clothes: {totalCount}
@@ -93,8 +95,10 @@ const Basket: React.FC = () => {
         <Typography
           sx={{
             fontFamily: "'Outfit', sans-serif",
-            fontSize: '25px',
-            color: '#000000',
+            fontSize: '20px',
+            fontWeight: '400',
+            lineHeight: '30px',
+            color: '#3A415C',
           }}
         >
           Order amount: ${totalPrice}

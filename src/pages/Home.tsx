@@ -6,6 +6,7 @@ import Delivery from '../components/Delivery';
 import FeaturedProduct from '../components/FeaturedProduct';
 import Posts from '../components/Posts';
 import Brands from '../components/Brands';
+import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
       <ShopProducts />
       <Posts />
       <Brands />
+      <Footer />
     </>
   );
 };

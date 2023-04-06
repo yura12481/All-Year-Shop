@@ -25,7 +25,7 @@ const Clock: React.FC = () => {
     let interval: any;
 
     const startTimer = (): void => {
-      const countDownDate = new Date('March 30, 2023').getTime();
+      const countDownDate = new Date('April 29, 2023').getTime();
 
       interval = setInterval(() => {
         const now = new Date().getTime();
