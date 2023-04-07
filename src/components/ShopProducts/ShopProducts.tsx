@@ -14,7 +14,7 @@ const clothesFor: string[] = ['All clothes', 'Men', 'Women', 'Kids'];
 
 const ShopProducts: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { categoryId, page, searchValue } = useAppSelector(
+  let { categoryId, page, searchValue } = useAppSelector(
     (state) => state.filter
   );
   const { data, status } = useAppSelector((state) => state.clothes);
@@ -112,8 +112,7 @@ const ShopProducts: React.FC = () => {
             : data.map((item) => <ClothesItem key={uuidv4()} {...item} />)}
         </Box>
       )}
-
-      <PaginationComponent />
+      {categoryId === 0 ? <PaginationComponent /> : (page = 1)}
     </Container>
   );
 };
