@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import { Box, Typography } from '@mui/material';
+
 import { v4 as uuidv4 } from 'uuid';
 
 type TimerItem = {
@@ -19,13 +21,14 @@ const Clock: React.FC = () => {
     { date: `${timerMinutes}`, addition: ':' },
     { date: `${timerSeconds}` },
   ];
+
   const timerInformation: string[] = ['DAYS', 'HRS', 'MINS', 'SECS'];
 
   useEffect((): void => {
     let interval: any;
 
     const startTimer = (): void => {
-      const countDownDate = new Date('April 29, 2023').getTime();
+      const countDownDate = new Date('August 29, 2023').getTime();
 
       interval = setInterval(() => {
         const now = new Date().getTime();
@@ -47,9 +50,9 @@ const Clock: React.FC = () => {
         }
       });
     };
-
     startTimer();
   }, []);
+
   return (
     <>
       <Typography

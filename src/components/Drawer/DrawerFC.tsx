@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Drawer,
   Box,
@@ -7,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
@@ -15,7 +18,8 @@ import ShopIcon from '@mui/icons-material/Shop';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CommentIcon from '@mui/icons-material/Comment';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Link } from 'react-router-dom';
+import PersonIcon from '@mui/icons-material/Person';
+
 import { v4 as uuidv4 } from 'uuid';
 
 type PageItem = {
@@ -30,10 +34,12 @@ const pages: PageItem[] = [
   { title: 'Discounts', icon: <LocalOfferIcon /> },
   { title: 'Reviews', icon: <CommentIcon /> },
   { title: 'Basket', icon: <ShoppingCartIcon /> },
+  { title: 'Profile', icon: <PersonIcon /> },
 ];
 
 const DrawerFC: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
+
   return (
     <React.Fragment>
       <Drawer

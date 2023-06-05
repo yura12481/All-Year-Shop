@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
+
 import { Container, Typography, Box } from '@mui/material';
+
 import { v4 as uuidv4 } from 'uuid';
-import ClothesItem from '../ClothesItem';
-import Skeleton from './Skeleton';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
+import { setCategoryId, setPage } from '../../redux/slices/filter/filterSlice';
+import { fetchClothes } from '../../redux/slices/data/asyncAction';
+
+import ClothesItem from './ShopProductItem/ShopProductItem';
+import Skeleton from '../Skeleton/Skeleton';
 import Search from '../Search/Search';
 import PaginationComponent from '../Pagination/PaginationComponent';
-import DataError from '../DataError';
-import { useAppDispatch, useAppSelector } from '../../hook';
-import { setCategoryId } from '../../redux/slices/filterSlice';
-import { fetchClothes } from '../../redux/slices/clothesSlice';
+import DataError from '../DataError/DataError';
 
 const clothesFor: string[] = ['All clothes', 'Men', 'Women', 'Kids'];
 
@@ -28,6 +32,13 @@ const ShopProducts: React.FC = () => {
       })
     );
   }, [categoryId, searchValue, page]);
+
+  useEffect(() => {
+    if (categoryId !== 0 || status === 'error') {
+      dispatch(setPage(1));
+    }
+  }, [categoryId, status, dispatch]);
+
   return (
     <Container maxWidth="lg" sx={{ marginTop: '126px' }}>
       <Typography
@@ -112,7 +123,7 @@ const ShopProducts: React.FC = () => {
             : data.map((item) => <ClothesItem key={uuidv4()} {...item} />)}
         </Box>
       )}
-      {categoryId === 0 ? <PaginationComponent /> : (page = 1)}
+      {categoryId === 0 && status !== 'error' && <PaginationComponent />}
     </Container>
   );
 };
